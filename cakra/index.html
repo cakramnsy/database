@@ -49,7 +49,15 @@
     <script data-framer-appear-animation="no-preference"></script>
     <script type="module" async data-framer-bundle fetchpriority="low" src="https://framerusercontent.com/sites/4vvxI760smklWozHQRsBOJ/default_script0.U6NJ7S42.mjs"></script>
     
-    <!-- End of bodyEnd -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var badgeContainer = document.getElementById('__framer-badge-container');
+        if (badgeContainer) {
+          badgeContainer.parentNode.removeChild(badgeContainer);
+        }
+      });
+    </script>
+    
 </body>
 
 <!-- Mirrored from cakra.framer.ai/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 21 Jul 2024 04:23:35 GMT -->
