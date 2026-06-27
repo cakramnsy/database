@@ -198,13 +198,26 @@ body {
 
 .social-media-container a {
     color: white; /* Warna putih */
-    font-size: 1.5rem;
+    font-size: 2.2rem; /* Diperbesar dari 1.5rem agar lebih mantap */
     transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .social-media-container a:hover {
-    color: #ffff00; /* Kuning saat hover */
-    transform: translateY(-3px);
+    transform: translateY(-5px); /* Menyeimbangkan efek hover dengan ukuran baru */
+}
+
+/* --- SVG ICON STYLE & HOVER GLOW EFFECT --- */
+.social-media-container a .social-icon {
+    width: 2.2rem;  /* Diperbesar dari 1.5rem */
+    height: 2.2rem; /* Diperbesar dari 1.5rem */
+    display: inline-block;
+    vertical-align: middle;
+    transition: filter 0.3s ease; /* Transisi halus untuk efek cahaya */
+}
+
+/* Memberikan efek pendaran cahaya putih pada ikon saat di-hover */
+.social-media-container a:hover .social-icon {
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.4));
 }
 
 /* Search/Link Element (Bottom Left) */
@@ -280,8 +293,7 @@ body {
     }
 
     .social-media-container {
-        gap: 15px;
-        /* padding: 12px 25px; - Removed as container is now just icons */
+        gap: 20px; /* Sedikit dilonggarkan karena ukuran ikon membesar */
     }
 
     .search-link {
@@ -311,10 +323,15 @@ body {
         flex-wrap: wrap;
         justify-content: center;
         padding: 10px 20px;
-        gap: 10px;
+        gap: 15px; /* Jarak antar ikon di mobile disesuaikan */
     }
 
     .social-media-container a { /* Specific size for mobile */
-        font-size: 1.6rem;
+        font-size: 1.8rem; /* Disesuaikan dari 1.6rem agar tetap pas di HP */
+    }
+    
+    .social-media-container a .social-icon {
+        width: 1.8rem;  /* Disesuaikan dari 1.6rem */
+        height: 1.8rem; /* Disesuaikan dari 1.6rem */
     }
 }
