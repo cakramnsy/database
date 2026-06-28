@@ -234,7 +234,7 @@ body {
 /* Search/Link Element (Bottom Left) */
 .search-link {
     position: absolute;
-    bottom: 30px;
+    top: 30px;
     left: 30px;
     z-index: 1;
 }
