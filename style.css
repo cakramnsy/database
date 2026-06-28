@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght=300;400;500;600;700;900&display=swap');
 
 /* CSS Variables for easy theme management */
 :root {
@@ -150,27 +150,34 @@ body {
     color: var(--secondary-text);
 }
 
+/* Mengatur area pembungkus tombol agar konsisten */
 .cta-buttons {
     display: flex;
     gap: 15px;
     justify-content: center;
     flex-wrap: wrap;
+    width: 100%;
+    max-width: 450px; /* Membatasi lebar area tombol di desktop */
 }
 
+/* Mengunci lebar tombol agar selalu sama di semua resolusi */
 .portfolio-button {
     display: inline-flex;
     align-items: center;
+    justify-content: center; /* Memastikan teks & ikon selalu di tengah */
     gap: 10px;
     background-color: rgba(26, 35, 126, 0.2); /* Navy dengan transparansi 20% */
     border: 2px solid var(--accent-blue); /* Stroke warna navy solid */
     color: var(--primary-text);
-    padding: 14px 30px;
+    padding: 14px 0; /* Padding kanan-kiri diubah ke 0 karena lebarnya diatur oleh flex/width */
     border-radius: 50px;
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
     transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    flex: 1; /* Membuat kedua tombol membagi ruang yang sama rata di desktop/tablet */
+    min-width: 180px; /* Lebar minimum agar terlihat kokoh */
 }
 
 .portfolio-button:hover {
@@ -314,24 +321,39 @@ body {
         font-size: 0.9rem;
     }
 
-    .portfolio-button {
-        padding: 12px 25px;
-        font-size: 0.9rem;
+    /* Modifikasi Tombol CTA khusus Mobile (Vertikal, Lebar Sama Penuh) */
+    .cta-buttons {
+        flex-direction: column; /* Mengubah susunan menjadi vertikal / menumpuk */
+        align-items: center;
+        width: 100%;
+        max-width: 260px; /* Batas lebar maksimal tombol di mobile agar proporsional */
+        margin: 0 auto;
     }
 
+    .portfolio-button {
+        padding: 14px 0;
+        font-size: 0.9rem;
+        width: 100%; /* Membuat tombol mengisi lebar penuh kontainer .cta-buttons */
+        flex: none;  /* Mematikan flex-grow desktop agar mengikuti width: 100% */
+    }
+
+    /* Penyesuaian Jarak Sosial Media Mobile */
     .social-media-container {
+        display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        gap: 6px 25px; /* DIUBAH: Jarak vertikal sekarang menjadi 6px agar lebih rapat */
         padding: 10px 20px;
-        gap: 15px; /* Jarak antar ikon di mobile disesuaikan */
+        max-width: 320px; /* Menjaga agar muat 4 ikon ukuran besar di baris pertama */
+        margin: 40px auto 0 auto;
     }
 
-    .social-media-container a { /* Specific size for mobile */
-        font-size: 1.8rem; /* Disesuaikan dari 1.6rem agar tetap pas di HP */
+    .social-media-container a { 
+        font-size: 2.5rem; /* Ukuran diperbesar menjadi 2.5rem */
     }
     
     .social-media-container a .social-icon {
-        width: 1.8rem;  /* Disesuaikan dari 1.6rem */
-        height: 1.8rem; /* Disesuaikan dari 1.6rem */
+        width: 2.5rem;  /* Lebar ikon diperbesar menjadi 2.5rem */
+        height: 2.5rem; /* Tinggi ikon diperbesar menjadi 2.5rem */
     }
 }
