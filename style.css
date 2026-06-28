@@ -26,7 +26,11 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden; /* Hide potential overflow from background animation */
+    
+    /* PERBAIKAN: Mengizinkan scroll vertikal, tetapi mengunci scroll horizontal akibat animasi */
+    overflow-x: hidden;
+    overflow-y: auto;
+    
     position: relative; /* For absolute positioning of background and search link */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -355,5 +359,17 @@ body {
     .social-media-container a .social-icon {
         width: 2.5rem;  /* Lebar ikon diperbesar menjadi 2.5rem */
         height: 2.5rem; /* Tinggi ikon diperbesar menjadi 2.5rem */
+    }
+}
+
+/* Tambahan: Optimasi untuk HP saat dimiringkan (Landscape) */
+@media (max-height: 550px) and (orientation: landscape) {
+    body {
+        align-items: flex-start; /* Mulai susunan dari atas agar scrolling terasa natural */
+        padding: 50px 20px;      /* Berikan ruang atas & bawah agar konten tidak terpotong */
+        overflow-y: auto;        /* Memastikan scroll vertikal aktif */
+    }
+    .main-content {
+        padding: 0;
     }
 }
