@@ -35,13 +35,6 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Custom selection style */
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Safari */
-    -khtml-user-select: none;    /* Konqueror HTML */
-    -moz-user-select: none;      /* Old versions of Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
-    user-select: none;           /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
 /* Custom selection background and text color */
@@ -50,43 +43,17 @@ body {
     color: var(--primary-bg);
 }
 
-/* Abstract Background Effect */
+/* Abstract Background Effect (Diubah untuk Video) */
 .background-effect {
-    position: absolute;
+    position: fixed; /* Menggunakan fixed agar video tetap di tempat saat di-scroll */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background:
-        /* Subtle smoke/fluid-like gradients */
-        radial-gradient(circle at 20% 30%, rgba(100, 100, 100, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(150, 150, 150, 0.06) 0%, transparent 50%),
-        linear-gradient(90deg, rgba(50, 50, 50, 0.04) 0%, transparent 50%, rgba(50, 50, 50, 0.04) 100%);
-    background-size: 200% 200%, 200% 200%, 400% 100%; /* Different sizes for different layers */
-    background-position: 0% 0%, 100% 100%, 0% 0%;
-    animation:
-        moveGradient1 25s linear infinite alternate,
-        moveGradient2 35s linear infinite alternate,
-        flowGradient 40s linear infinite;
-    filter: blur(15px); /* Apply a subtle blur to the background itself */
-    z-index: -1;
-    opacity: 0.8; /* Slightly reduce opacity for subtlety */
-}
-
-/* Keyframe Animations for Background */
-@keyframes moveGradient1 {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%; }
-}
-
-@keyframes moveGradient2 {
-    0% { background-position: 100% 0%; }
-    100% { background-position: 0% 100%; }
-}
-
-@keyframes flowGradient {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 0%; }
+    object-fit: cover; /* Memastikan video memenuhi layar secara proporsional */
+    z-index: -1; /* Tetap berada di belakang konten */
+    opacity: 0.25; /* Opacity diatur ke 50% sesuai permintaan */
+    pointer-events: none; /* Memastikan video tidak bisa diklik kanan/mengganggu interaksi */
 }
 
 /* Main Content Container */
@@ -199,18 +166,30 @@ body {
     background-color: rgba(0, 250, 146, 0.4);
 }
 
-/* Social Media Container (Glassmorphism) */
+/* Judul di atas Social Media Container */
+.social-title {
+    font-size: 1rem;                 
+    color: var(--secondary-text);     
+    font-style: italic;               
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;                 
+}
+
+/* Social Media Container (Glassmorphism) - DESKTOP */
 .social-media-container {
     display: flex;
     justify-content: center;
     gap: 25px;
-    margin-top: 40px;
+    margin-top: 15px;                 /* Jarak proporsional seimbang untuk desktop */
 }
 
 .social-media-container a {
     color: white; /* Warna putih */
     font-size: 2.2rem; /* Diperbesar dari 1.5rem agar lebih mantap */
     transition: color 0.3s ease, transform 0.2s ease;
+    display: inline-block;            
+    line-height: 1;                   
 }
 
 .social-media-container a:hover {
@@ -341,15 +320,21 @@ body {
         flex: none;  /* Mematikan flex-grow desktop agar mengikuti width: 100% */
     }
 
-    /* Penyesuaian Jarak Sosial Media Mobile */
+    /* PERBAIKAN: Judul Khusus Layar HP dibuat sedekat mungkin tanpa tabrakan */
+    .social-title {
+        font-size: 0.9rem;            
+        margin-bottom: 0;             
+    }
+
+    /* PERBAIKAN: Mengatur ulang margin-top agar sangat rapat khusus mobile */
     .social-media-container {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 6px 25px; /* DIUBAH: Jarak vertikal sekarang menjadi 6px agar lebih rapat */
+        gap: 6px 25px; /* Jarak vertikal antar ikon dibatasi 6px */
         padding: 10px 20px;
-        max-width: 320px; /* Menjaga agar muat 4 ikon ukuran besar di baris pertama */
-        margin: 40px auto 0 auto;
+        max-width: 320px; 
+        margin: 5px auto 0 auto;     /* DIUBAH: Jarak ke teks di atasnya dipangkas menjadi hanya 5px */
     }
 
     .social-media-container a { 
