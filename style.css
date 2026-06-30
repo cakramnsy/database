@@ -170,7 +170,7 @@ body {
 .social-title {
     font-size: 1rem;                 
     color: var(--secondary-text);     
-    font-style: italic;               
+    font-style: normal;               
     text-align: center;
     margin-top: 0;
     margin-bottom: 0;                 
@@ -181,7 +181,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 25px;
-    margin-top: 15px;                 /* Jarak proporsional seimbang untuk desktop */
+    margin-top: 6px;                 /* Jarak proporsional seimbang untuk desktop */
 }
 
 .social-media-container a {
@@ -334,7 +334,7 @@ body {
         gap: 6px 25px; /* Jarak vertikal antar ikon dibatasi 6px */
         padding: 10px 20px;
         max-width: 320px; 
-        margin: 5px auto 0 auto;     /* DIUBAH: Jarak ke teks di atasnya dipangkas menjadi hanya 5px */
+        margin: -2px auto 0 auto;     /* DIUBAH: Jarak ke teks di atasnya dipangkas menjadi hanya 5px */
     }
 
     .social-media-container a { 
