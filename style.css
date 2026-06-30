@@ -326,24 +326,24 @@ body {
         margin-bottom: 0;             
     }
 
-    /* PERBAIKAN: Mengatur ulang margin-top agar sangat rapat khusus mobile */
+/* PERBAIKAN: Mengatur ulang margin-top dan lebar kontainer agar patah menjadi 3 dan 2 ikon */
     .social-media-container {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 6px 25px; /* Jarak vertikal antar ikon dibatasi 6px */
-        padding: 10px 20px;
-        max-width: 320px; 
-        margin: -2px auto 0 auto;     /* DIUBAH: Jarak ke teks di atasnya dipangkas menjadi hanya 5px */
+        gap: 6px 25px;            /* Jarak vertikal 15px, jarak horizontal tetap 25px */
+        padding: 10px 0;
+        max-width: 220px;          /* Dikunci ke 220px agar ikon ke-4 dan ke-5 otomatis turun ke bawah */
+        margin: -2px auto 0 auto;  /* Jarak ke teks di atasnya tetap rapat */
     }
 
     .social-media-container a { 
-        font-size: 2.5rem; /* Ukuran diperbesar menjadi 2.5rem */
+        font-size: 2.5rem; 
     }
     
     .social-media-container a .social-icon {
-        width: 2.5rem;  /* Lebar ikon diperbesar menjadi 2.5rem */
-        height: 2.5rem; /* Tinggi ikon diperbesar menjadi 2.5rem */
+        width: 2.5rem;  
+        height: 2.5rem; 
     }
 }
 
