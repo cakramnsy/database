@@ -46,6 +46,18 @@ body {
     }
 }
 
+/* PERBAIKAN: Animasi Khusus Slide-in dari Kiri Persis Seperti .search-link */
+@keyframes slideFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 /* Animasi Khusus Garis (Hanya Garis Fisik yang Melebar) */
 @keyframes growLine {
     from {
@@ -58,15 +70,14 @@ body {
     }
 }
 
-/* --- Tombol Kembali / Home (Floating Kiri Atas - Desktop Base) --- */
+/* --- Tombol Kembali / Home (Floating Kiri Atas - DISAMAKAN DENGAN .search-link) --- */
 .back-link {
     position: fixed;
     top: 30px;
     left: 30px;
     z-index: 100;
-    animation: slideInOnAppear 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    animation-delay: 0.1s;
-    animation-fill-mode: backwards;
+    /* Menggunakan animasi slideFromLeft dengan durasi 1.2s ease-in */
+    animation: slideFromLeft 1.2s ease-in forwards;
 }
 
 .back-link a {
@@ -75,30 +86,25 @@ body {
     gap: 8px;
     padding: 12px 24px;
     
-    border: 2px solid #ffffff; 
+    border: 2px solid white; 
     border-radius: 50px;
     text-decoration: none;
     color: #ffffff;
     font-size: 0.9rem;
-    font-weight: 500;
-    background-color: rgba(255, 255, 255, 0.1); 
+    font-weight: 500; /* Membuat teks sedikit lebih tebal */
+    background-color: rgba(255, 255, 255, 0.2); /* Background putih dengan transparansi 20% */
     
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 
-                0 0 40px rgba(255, 255, 255, 0.3), 
-                inset 0 0 15px rgba(255, 255, 255, 0.3);
+    /* Efek Glow Awal menggunakan warna putih konstan transparan */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
     
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    
-    transition: all 0.3s ease; 
+    /* Menyelaraskan efek transisi */
+    transition: box-shadow 0.3s ease, border-color 0.3s ease; 
 }
 
 .back-link a:hover {
     border-color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.2); 
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 
-                0 0 40px rgba(255, 255, 255, 0.3), 
-                inset 0 0 15px rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.2); /* Tetap konsisten saat hover */
+    box-shadow: 0 0 25px #ffffff; /* Efek pendaran penuh saat hover */
 }
 
 /* --- Layout Grid Utama (Desktop) --- */
@@ -156,7 +162,7 @@ body {
 .divider {
     border: none;
     border-top: 1.5px solid #ffffff; 
-    margin: 20px 0;
+    margin: 20px 0; 
     width: 100%;
     transform-origin: left;
     animation: growLine 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
@@ -166,7 +172,7 @@ body {
 
 /* Paragraf Bio */
 .profile-bio {
-    font-size: 1.15rem;
+    font-size: 1rem;
     line-height: 1.6;
     color: #ffffff;
     font-weight: 400;
@@ -180,8 +186,8 @@ body {
 .profile-details {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
+    gap: 4px;
+    margin-top: 0; 
     animation: slideInOnAppear 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     animation-delay: 0.5s;
     animation-fill-mode: backwards;
@@ -200,7 +206,7 @@ body {
     font-weight: 600;
     color: #ffffff;
     font-size: 0.95rem;
-    padding-bottom: 12px; 
+    padding-bottom: 8px; 
     width: max-content;
     min-width: 110px;
     display: inline-block;
@@ -225,7 +231,7 @@ body {
     color: #ffffff;
     font-size: 0.95rem;
     text-align: right;
-    padding-bottom: 12px; 
+    padding-bottom: 8px; 
     width: max-content;
     min-width: 195px;
     display: inline-block;
@@ -270,8 +276,9 @@ body {
 }
 
 .profile-image-slot {
-    width: 320px;
-    height: 400px;
+    width: 260px; /* Diperkecil dari 320px */
+    aspect-ratio: 4 / 5; /* Mengunci rasio 4:5 secara otomatis */
+    height: auto; /* Membiarkan aspect-ratio yang menentukan tinggi (akan menjadi 325px) */
     border: 1.5px solid #ffffff; 
     background-color: #262424;
     position: relative;
@@ -305,26 +312,22 @@ body {
    Responsive Layout (Mobile & Tablet Breakpoints)
    ========================================================================== */
 
-/* Ganti hanya bagian @media (max-width: 768px) di paling bawah dengan ini: */
-
 @media (max-width: 768px) {
     body {
         align-items: flex-start;
-        padding-top: 100px; /* Jarak aman agar konten tidak tertutup tombol mengambang */
+        padding-top: 100px; 
     }
 
-    /* KEMBALI KE UKURAN ALAMI: Mengikuti style bawaan tombol index.html */
+    /* Modifikasi responsif tombol back-link agar sama persis seperti search-link */
     .back-link {
         position: fixed;
-        top: 20px;
-        left: 20px;
-        width: auto; /* Mencegah tombol melebar penuh */
+        top: 20px;  
+        left: 20px; 
     }
 
     .back-link a {
-        width: auto; /* Tombol menciut mengikuti panjang teks + padding */
-        padding: 10px 20px; 
-        font-size: 0.85rem;
+        padding: 8px 16px; 
+        font-size: 0.8rem; 
     }
 
     .about-container {
@@ -340,10 +343,10 @@ body {
         justify-content: center;
     }
 
-    .profile-image-slot {
+.profile-image-slot {
         width: 100%;
-        max-width: 300px;
-        height: 375px;
+        max-width: 240px; /* Diperkecil dari 300px agar serasi dengan layout desktop yang baru */
+        height: auto; /* Mengikuti aspect-ratio dari base layout */
     }
 
     .about-content {
@@ -380,4 +383,4 @@ body {
     .detail-label::after, .detail-value::after {
         width: 100%;
     }
-}
+} /* PERBAIKAN: Menghapus kurung kurawal ganda tak diperlukan yang merusak kode sebelumnya */

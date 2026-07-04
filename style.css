@@ -4,7 +4,7 @@
 :root {
     --primary-bg: #000000;
     --primary-text: #ffffff;
-    --secondary-text: #cccccc;
+    --secondary-text: #ffffff; /* DIUBAH: Mengubah warna teks sekunder menjadi putih */
     --accent-blue: #1a237e; /* Navy indigo metalic */
     --border-light: rgba(255, 255, 255, 0.3);
     --glow-color: rgba(255, 255, 255, 0.5);
@@ -82,6 +82,7 @@ body {
     line-height: 1;
     margin-bottom: 20px;
     letter-spacing: 0.03rem;
+    color: var(--primary-text);
 }
 
 /* "Creative Designer" Badge */
@@ -92,7 +93,7 @@ body {
     border-radius: 50px;
     font-size: 1.1rem; /* Diperbesar */
     font-weight: 400;
-    color: var(--secondary-text);
+    color: var(--primary-text); /* DIUBAH: Menjadi putih agar konsisten */
     margin-bottom: 30px;
     background-color: rgba(255, 255, 255, 0.05); /* Slight background for visibility */
 }
@@ -153,6 +154,7 @@ body {
 
 .portfolio-button:hover {
     background-color: #3f51b5; /* Lighter shade of navy on hover */
+    color: white; /* DIUBAH: Memastikan teks hover tetap putih */
     transform: translateY(-2px);
 }
 
@@ -164,6 +166,7 @@ body {
 
 .programming-button:hover {
     background-color: rgba(0, 250, 146, 0.4);
+    color: white; /* DIUBAH: Memastikan teks hover tetap putih */
 }
 
 /* Judul di atas Social Media Container */
@@ -194,6 +197,7 @@ body {
 
 .social-media-container a:hover {
     transform: translateY(-5px); /* Menyeimbangkan efek hover dengan ukuran baru */
+    color: white;
 }
 
 /* --- SVG ICON STYLE & HOVER GLOW EFFECT --- */
@@ -261,6 +265,7 @@ body {
 .search-link a:hover {
     box-shadow: 0 0 25px var(--primary-text);
     border-color: var(--primary-text);
+    color: white;
 }
 
 /* Responsive Design */
