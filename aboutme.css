@@ -6,11 +6,12 @@ body {
     background-color: #000000 !important;
     font-family: 'Poppins', sans-serif;
     display: flex;
-    justify-content: center;
+    flex-direction: column; 
+    justify-content: flex-start; /* PERBAIKAN: Memulai alur dari paling atas halaman */
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    padding: 20px;
+    padding: 30px 20px; /* Jarak aman 30px dari atas layar monitor */
     box-sizing: border-box;
     position: relative; 
     overflow-x: hidden;
@@ -55,11 +56,14 @@ body {
     }
 }
 
-/* --- Tombol Kembali / Home (Floating Kiri Atas - DISAMAKAN DENGAN .search-link) --- */
+/* --- Tombol Kembali / Home (Pojok Kiri Atas Asli) --- */
 .back-link {
-    position: fixed;
-    top: 30px;
-    left: 30px;
+    position: relative; 
+    width: 100%;       
+    display: flex;
+    justify-content: flex-start; 
+    margin: 0 0 20px 0; /* Mengurangi jarak bawah agar lebih efisien */
+    padding-left: 20px;          
     z-index: 100;
     /* Menggunakan animasi slideFromLeft dengan durasi 1.2s ease-in */
     animation: slideFromLeft 1.2s ease-in forwards;
@@ -69,15 +73,15 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 24px;
+    padding: 12px 24px; 
     
     border: 2px solid white; 
     border-radius: 50px;
     text-decoration: none;
     color: #ffffff;
     font-size: 0.9rem;
-    font-weight: 500; /* Membuat teks sedikit lebih tebal */
-    background-color: rgba(255, 255, 255, 0.2); /* Background putih dengan transparansi 20% */
+    font-weight: 500; 
+    background-color: rgba(255, 255, 255, 0.2); 
     
     /* Efek Glow Awal menggunakan warna putih konstan transparan */
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
@@ -88,8 +92,8 @@ body {
 
 .back-link a:hover {
     border-color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.2); /* Tetap konsisten saat hover */
-    box-shadow: 0 0 25px #ffffff; /* Efek pendaran penuh saat hover */
+    background-color: rgba(255, 255, 255, 0.2); 
+    box-shadow: 0 0 25px #ffffff; 
 }
 
 /* --- Layout Grid Utama (Desktop) --- */
@@ -101,7 +105,10 @@ body {
     gap: 60px;
     max-width: 1100px;
     width: 100%;
-    margin: auto;
+    /* Mengembalikan ke auto agar flexbox membagi ruang atas-bawah secara seimbang */
+    margin: auto auto; 
+    /* Menaikkan sedikit saja secara halus (-10px s.d -15px biasanya adalah titik manis optical center) */
+    transform: translateY(-40px); 
     position: relative;
     z-index: 1; 
 }
@@ -192,7 +199,6 @@ body {
     color: #ffffff;
     font-size: 0.95rem;
     padding-bottom: 8px; 
-    /* PERBAIKAN: Gunakan fit-content agar lebar elemen membungkus teks dengan pas */
     width: fit-content;
     display: inline-block;
     position: relative;
@@ -203,7 +209,7 @@ body {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%; /* Akan otomatis mengikuti lebar fit-content dari teks label */
+    width: 100%; 
     height: 1.5px; 
     background-color: #ffffff;
     transform-origin: left;
@@ -217,7 +223,6 @@ body {
     font-size: 0.95rem;
     text-align: right;
     padding-bottom: 8px; 
-    /* PERBAIKAN: Gunakan fit-content agar lebar elemen membungkus teks dengan pas */
     width: fit-content;
     display: inline-block;
     position: relative;
@@ -227,8 +232,8 @@ body {
     content: '';
     position: absolute;
     bottom: 0;
-    right: 0; /* Menempel ke kanan karena teks rata kanan */
-    width: 100%; /* Akan otomatis mengikuti lebar fit-content dari teks value */
+    right: 0; 
+    width: 100%; 
     height: 1.5px; 
     background-color: #ffffff;
     transform-origin: right;
@@ -261,9 +266,9 @@ body {
 }
 
 .profile-image-slot {
-    width: 260px; /* Diperkecil dari 320px */
-    aspect-ratio: 4 / 5; /* Mengunci rasio 4:5 secara otomatis */
-    height: auto; /* Membiarkan aspect-ratio yang menentukan tinggi (akan menjadi 325px) */
+    width: 260px; 
+    aspect-ratio: 4 / 5; 
+    height: auto; 
     border: 1.5px solid #ffffff; 
     background-color: #262424;
     position: relative;
@@ -281,7 +286,6 @@ body {
     top: 0;
     left: 0;
     opacity: 0;
-    /* Tambahkan dua baris di bawah ini agar foto muncul dengan efek transisi */
     animation: slideInOnAppear 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     animation-delay: 0.5s; 
 }
@@ -292,15 +296,14 @@ body {
 
 @media (max-width: 768px) {
     body {
-        align-items: flex-start;
-        padding-top: 100px; 
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 20px; 
     }
 
-    /* Modifikasi responsif tombol back-link agar sama persis seperti search-link */
     .back-link {
-        position: fixed;
-        top: 20px;  
-        left: 20px; 
+        margin-bottom: 25px;
+        padding-left: 10px; 
     }
 
     .back-link a {
@@ -312,6 +315,10 @@ body {
         flex-direction: column;
         gap: 30px;
         padding: 10px;
+        margin: 0 auto;
+        
+        /* Mengunci posisi mobile agar tetap naik sedikit (-12px) */
+        transform: translateY(-12px); 
     }
 
     .about-image-wrapper {
@@ -321,10 +328,10 @@ body {
         justify-content: center;
     }
 
-.profile-image-slot {
+    .profile-image-slot {
         width: 100%;
-        max-width: 240px; /* Diperkecil dari 300px agar serasi dengan layout desktop yang baru */
-        height: auto; /* Mengikuti aspect-ratio dari base layout */
+        max-width: 240px; 
+        height: auto; 
     }
 
     .about-content {
@@ -352,8 +359,8 @@ body {
         justify-content: space-between;
     }
 
-.detail-label, .detail-value {
-        width: fit-content; /* Pastikan tetap fit-content di mobile */
+    .detail-label, .detail-value {
+        width: fit-content; 
         min-width: 0;
         display: inline-block;
     }

@@ -203,10 +203,10 @@ body {
 
 /* Search/Link Element (Top Left) */
 .search-link {
-    position: fixed; /* Changed from absolute to fixed */
+    position: absolute; /* Mengubah dari fixed ke absolute agar posisinya relatif terhadap body */
     top: 30px;
     left: 30px;
-    z-index: 100;    /* Increased z-index to make sure it floats above everything */
+    z-index: 100;    /* Memastikan tombol berada di lapisan paling atas */
 }
 
 /* Default Fade-in Animation for all reveal elements */
