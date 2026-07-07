@@ -7,11 +7,11 @@ body {
     font-family: 'Poppins', sans-serif;
     display: flex;
     flex-direction: column; 
-    justify-content: flex-start; /* PERBAIKAN: Memulai alur dari paling atas halaman */
-    align-items: center;
+    justify-content: center; /* DIUBAH: Menjadi center agar konten di tengah secara vertikal */
+    align-items: center;     /* Menengahkahkan secara horizontal */
     min-height: 100vh;
     margin: 0;
-    padding: 30px 20px; /* Jarak aman 30px dari atas layar monitor */
+    padding: 20px;           /* Beri sedikit padding ruang aman */
     box-sizing: border-box;
     position: relative; 
     overflow-x: hidden;
@@ -58,15 +58,11 @@ body {
 
 /* --- Tombol Kembali / Home (Pojok Kiri Atas Asli) --- */
 .back-link {
-    position: relative; 
-    width: 100%;       
-    display: flex;
-    justify-content: flex-start; 
-    margin: 0 0 20px 0; /* Mengurangi jarak bawah agar lebih efisien */
-    padding-left: 20px;          
+    position: absolute; 
+    top: 30px;
+    left: 30px;          
     z-index: 100;
-    /* Menggunakan animasi slideFromLeft dengan durasi 1.2s ease-in */
-    animation: slideFromLeft 1.2s ease-in forwards;
+    animation: slideFromLeft 1.2s ease-in forwards; /* Tetapkan animasi Anda */
 }
 
 .back-link a {
@@ -105,10 +101,8 @@ body {
     gap: 60px;
     max-width: 1100px;
     width: 100%;
-    /* Mengembalikan ke auto agar flexbox membagi ruang atas-bawah secara seimbang */
-    margin: auto auto; 
-    /* Menaikkan sedikit saja secara halus (-10px s.d -15px biasanya adalah titik manis optical center) */
-    transform: translateY(-40px); 
+    margin: 0; /* DIUBAH: Mengunci margin agar flexbox dari body bekerja sempurna */
+    transform: translateY(-20px); /* Opsional: sesuaikan sedikit untuk kenyamanan pandangan (optical center) */
     position: relative;
     z-index: 1; 
 }
@@ -295,20 +289,23 @@ body {
    ========================================================================== */
 
 @media (max-width: 768px) {
-    body {
-        justify-content: flex-start;
-        align-items: center;
-        padding-top: 20px; 
+body {
+        justify-content: flex-start; /* Kembali ke atas untuk layout mobile yang memanjang */
+        padding-top: 80px;           /* Beri ruang di atas karena tombol Home sekarang absolute */
     }
 
     .back-link {
-        margin-bottom: 20px;
-        padding-left: 20px; 
+        position: absolute; /* Memastikan absolute aktif */
+        top: 20px;          /* Samakan dengan .search-link di mobile */
+        left: 20px;         /* Samakan dengan .search-link di mobile */
+        padding-left: 0;    /* HAPUS/RESET padding bawaan lama agar tidak bergeser */
+        margin-bottom: 0;   /* HAPUS/RESET margin bawaan lama */
+        width: auto;        /* Mengunci lebar agar tidak penuh */
     }
 
     .back-link a {
-        padding: 8px 16px; 
-        font-size: 0.8rem; 
+        padding: 8px 16px;  /* Jarak padding dalam tombol (Sama dengan search-link) */
+        font-size: 0.8rem;  /* Ukuran teks (Sama dengan search-link) */
     }
 
     .about-container {
@@ -316,9 +313,7 @@ body {
         gap: 30px;
         padding: 10px;
         margin: 0 auto;
-        
-        /* Mengunci posisi mobile agar tetap naik sedikit (-12px) */
-        transform: translateY(-12px); 
+        transform: translateY(0);    /* Reset transform pada mobile */
     }
 
     .about-image-wrapper {
