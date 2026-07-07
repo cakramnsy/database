@@ -56,6 +56,16 @@ body {
     }
 }
 
+/* Animasi Stroke SVG Berjalan Mengelilingi Kotak */
+@keyframes drawStroke {
+    from {
+        stroke-dashoffset: 1170; /* Mulai dari kondisi kosong */
+    }
+    to {
+        stroke-dashoffset: 0;    /* Berjalan sampai penuh */
+    }
+}
+
 /* --- Tombol Kembali / Home (Pojok Kiri Atas Asli) --- */
 .back-link {
     position: absolute; 
@@ -263,13 +273,18 @@ body {
     width: 260px; 
     aspect-ratio: 4 / 5; 
     height: auto; 
-    border: 1.5px solid #ffffff; 
     background-color: #262424;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+
+    /* PERBAIKAN: Border manual dilepas karena diganti oleh garis stroke SVG */
+    /* TAMBAHAN: Efek Glow Putih Santai (Pendaran luar & pendaran dalam di belakang foto) */
+    box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.15), 
+        inset 0 0 40px rgba(255, 255, 255, 0.3);
 }
 
 .profile-photo {
@@ -284,12 +299,40 @@ body {
     animation-delay: 0.5s; 
 }
 
+/* --- Elemen Animasi Stroke SVG Overlay --- */
+.border-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Mencegah bentrok aksi klik mouse pada gambar */
+    z-index: 2;           /* Berada tepat di atas element gambar */
+}
+
+.border-animation rect {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: #ffffff;      /* Warna garis tepi */
+    stroke-width: 3px;    /* Ketebalan garis stroke */
+    
+    /* Keliling total aspek rasio kotak: (260 * 2) + (325 * 2) = 1170 */
+    stroke-dasharray: 1170; 
+    stroke-dashoffset: 1170; 
+    
+    /* Eksekusi animasi stroke berjalan */
+    animation: drawStroke 2s ease-in forwards;
+    animation-delay: 0.4s; /* Berjalan selaras saat kotak profil mulai muncul */
+}
+
+
 /* ==========================================================================
    Responsive Layout (Mobile & Tablet Breakpoints)
    ========================================================================== */
 
 @media (max-width: 768px) {
-body {
+    body {
         justify-content: flex-start; /* Kembali ke atas untuk layout mobile yang memanjang */
         padding-top: 80px;           /* Beri ruang di atas karena tombol Home sekarang absolute */
     }
